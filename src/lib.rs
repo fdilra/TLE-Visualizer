@@ -4,11 +4,10 @@ pub mod plotter;
 pub mod propagator;
 pub mod cli;
 
-use anyhow::Result;
+use anyhow::{Context, Result};
 
-use cli::{CLI, Commands};
-
-use crate::cli::QueryArgs;
+use cli::{CLI, Commands, QueryArgs};
+use tle::{TLE, parse_tles};
 
 
 pub fn run(cli: CLI) -> Result<()> {
@@ -31,9 +30,13 @@ pub fn run(cli: CLI) -> Result<()> {
 
 fn execute_plot_command(args: &QueryArgs) -> Result<()> {
     let tle_string = fetcher::query_celestrak(&args.query, &args.value)?;
-    println!("{tle_string:?}");
+    // println!("{:?}", &tle_string);
 
-    // TODO: call TLE parser
+    let tle_list: Vec<TLE> = parse_tles(&tle_string)
+        .context("Error: failed to parse TLE string")?;
+
+    println!("\n{:?}", tle_list);
+
     // TODO: call TLE propagator
     // TODO: call TLE plotter
 
