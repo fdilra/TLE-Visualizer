@@ -9,7 +9,7 @@ use anyhow::{Context, Result};
 use cli::{CLI, Commands, QueryArgs};
 use tle::{TLE, parse_tles};
 
-use crate::propagator::propagate_tles;
+use propagator::propagate_tles;
 
 
 pub fn run(cli: CLI) -> Result<()> {
@@ -40,7 +40,6 @@ fn execute_plot_command(args: &QueryArgs) -> Result<()> {
 
     let propagation_results = propagate_tles(tle_list)?;
     println!("{:?}", propagation_results);
-
     // TODO: call TLE plotter
 
     return Ok(());
