@@ -31,9 +31,9 @@ pub fn run(cli: CLI) -> Result<()> {
 }
 
 fn execute_plot_command(args: &QueryArgs) -> Result<()> {
-    // Hardcoded string for testing (to avoid getting ip banned from Celestrak)
-    let tle_string = "ISS (ZARYA)\n1 25544U 98067A   25260.12361477  .00008550  00000-0  15572-3 0  9997\n2 25544  51.6329 211.3907 0004353 348.5756  11.5133 15.50345634529426".to_owned();
-    // let tle_string = fetcher::query_celestrak(&args.query, &args.value)?;
+    // Hardcoded string for testing (to avoid getting ip banned from Celestrak for too many requests)
+    let test_string = "ISS (ZARYA)\n1 25544U 98067A   25260.12361477  .00008550  00000-0  15572-3 0  9997\n2 25544  51.6329 211.3907 0004353 348.5756  11.5133 15.50345634529426".to_owned();
+    let tle_string = fetcher::query_celestrak(&args.query, &args.value)?;
     // println!("\nFetched TLE string:\n {:?}", &tle_string);
 
     let tle_list: Vec<TLE> = parse_tles(&tle_string)?;
