@@ -11,12 +11,10 @@ A Rust CLI tool for fetching, propagating, and visualizing satellite orbital dat
 
 - Query [CelesTrak](https://celestrak.org/NORAD/elements/) for TLE (Two-Line Element) data
 - Propagate orbital elements using SGP4
-- Visualize trajectory around the Earth in 3D using the "three-d" crate
+- Visualize trajectory around the Earth in 3D using the `kiss3d` crate
 
 ---
 ## Usage
-
-  
 
 ### Example: Query the ISS TLE by Catalog Number
 
@@ -48,8 +46,8 @@ At present, the application can:
 
 Next steps:
 * Add a command for 2D ground track visualization 
-* Improve performance and 3D trajectory drawing method
 * Improve testing
+* Improve presentation (background stars, atmosphere, illumination)
 
 ---
 ## Testing
