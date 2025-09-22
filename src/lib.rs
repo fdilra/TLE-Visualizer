@@ -9,7 +9,7 @@ use anyhow::{Result};
 use crate::cli::{CLI, Commands, QueryArgs};
 use crate::tle::{TLE, parse_tles};
 use crate::propagator::propagate_tles;
-use crate::graphics::plot_tles;
+use crate::graphics::plot_tles_3d;
 
 
 pub fn run(cli: CLI) -> Result<()> {
@@ -42,7 +42,7 @@ fn execute_plot_command(args: &QueryArgs) -> Result<()> {
     let propagation_results = propagate_tles(tle_list)?;
     // println!("{:?}", propagation_results);
     
-    plot_tles(&propagation_results)?;
+    plot_tles_3d(&propagation_results)?;
 
     return Ok(());
 }
