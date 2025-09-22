@@ -24,6 +24,12 @@ pub fn plot_tles(results: &Vec<PropagationResult>) -> Result<()> {
     let mut camera = ArcBall::new(eye, at);
     camera.set_dist_step(1.005);
 
+    // Add skybox (background stars)
+    let mut skybox = window.add_sphere(1000.0);
+    let skybox_texture_path = Path::new("assets/stars.jpg");
+    skybox.set_texture_from_file(skybox_texture_path, "stars");
+    skybox.enable_backface_culling(false);
+
     // Add a sphere to represent the Earth and rotate it to fit an Earth fixed coord system
     let mut earth = window.add_sphere(5.0);
     let texture_path = Path::new("assets/earthtex.jpg");
@@ -52,6 +58,9 @@ pub fn plot_tles(results: &Vec<PropagationResult>) -> Result<()> {
     // Render loop
     while window.render_with_camera(&mut camera) {
         window.set_line_width(2.0);
+
+        // Draw skybox
+        skybox.set_local_translation(camera.at().into());
 
         // Draw axes
         window.draw_line(&at, &x_axis_pt, &colors[0]);
