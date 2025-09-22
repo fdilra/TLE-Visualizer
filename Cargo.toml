@@ -9,6 +9,6 @@ chrono = "0.4.42"
 reqwest = { version = "0.12.23", features = ["blocking"] }
 sgp4 = "2.3.0"
 clap = { version = "4.5.47", features = ["derive"] }
-three-d = "0.18.2"
-three-d-asset = { version = "0.9.2", features = ["obj", "png", "jpeg", "gltf"] }
+kiss3d = "0.36.0"
+nalgebra   = { version = "0.30", features = ["rand"] }
 
