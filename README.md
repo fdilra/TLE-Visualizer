@@ -42,9 +42,10 @@ At present, the application can:
 * Parse CLI arguments
 * Fetch TLE data from CelesTrak
 * Validate queries
-* Visualize 3D trajectories (at the moment there are performance problems with satellite groups and visualization problems with geostationary satellites)
+* Visualize 3D trajectories
 
 Next steps:
+* Improve Earth model alignment with axes
 * Add a command for 2D ground track visualization 
 * Improve testing
 * Improve presentation (background stars, atmosphere, illumination)

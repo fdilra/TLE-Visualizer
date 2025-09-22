@@ -36,7 +36,7 @@ fn execute_plot_command(args: &QueryArgs) -> Result<()> {
     let tle_string = fetcher::query_celestrak(&args.query, &args.value)?;
     // println!("\nFetched TLE string:\n {:?}", &tle_string);
 
-    let tle_list: Vec<TLE> = parse_tles(&test_string)?;
+    let tle_list: Vec<TLE> = parse_tles(&tle_string)?;
     // println!("\n{:?}", tle_list);
 
     let propagation_results = propagate_tles(tle_list)?;
