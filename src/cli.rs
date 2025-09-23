@@ -3,11 +3,10 @@ use clap::{Args, Parser, Subcommand};
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 pub struct CLI {
-    /// Option to export plot to specified directory
-    #[arg(short, long, value_name = "PATH")]
-    pub output_path: Option<String>,
 
-    // TODO: add -e option for specifying exported plot extension (requires -o) and decide default extension
+    /// Option to set a custom propagation time. Default is 4 hours.
+    #[arg(short, value_name = "PROPAGATION_TIME_IN_HOURS")]
+    pub time: Option<i32>, 
 
     /// CLI commands
     #[command(subcommand)]
@@ -40,29 +39,5 @@ pub struct QueryArgs {
     pub value: String,
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_parse_plot_command() {
-        let cli = CLI::parse_from([
-            "testbin",
-            "--output-path", "outdir",
-            "plot",
-            "CATNR",
-            "25544"
-        ]);
-
-        assert_eq!(cli.output_path, Some("outdir".to_string()));
-
-        match cli.command.unwrap() {
-            Commands::Plot(args) => {
-                assert_eq!(args.query, "CATNR");
-                assert_eq!(args.value, "25544");
-            }
-        }
-    }
-
-    // TODO
-}
+// TODO
+// TESTS
