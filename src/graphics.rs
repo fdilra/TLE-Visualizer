@@ -2,6 +2,7 @@ extern crate kiss3d;
 extern crate nalgebra as na;
 
 use anyhow::Result;
+use kiss3d::camera::Camera;
 use kiss3d::{camera::ArcBall, scene::SceneNode};
 use kiss3d::light::Light;
 use kiss3d::window::Window;
@@ -26,6 +27,7 @@ pub fn plot_tles_3d(results: &Vec<PropagationResult>) -> Result<()> {
     
     // Render loop
     while window.render_with_camera(&mut camera) {
+        camera.look_at(camera.eye(), Point3::origin()); // Reset camera pointing to origin
         window.set_line_width(2.0);
 
         // Move skybox
