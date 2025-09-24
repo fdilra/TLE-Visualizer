@@ -1,12 +1,21 @@
 use std::io::Read;
 use anyhow::{Context, Result, anyhow};
-
+use std::time::Duration; 
+use reqwest::blocking::Client; 
 
 pub fn query_celestrak(query: &str, value: &str) -> Result<String> {
     let url: String = format!("https://celestrak.org/NORAD/elements/gp.php?{}={}&FORMAT=tle", query, value);
 
-    let mut response = reqwest::blocking::get(url)
-        .context("Failed to get a reponse from celestrak")?;
+    // Build a client with a 10s timeout
+    let client = Client::builder()
+        .timeout(Duration::from_secs(10))
+        .build()
+        .context("Failed to build the reqwest client")?;
+
+    // Make request with client
+    let mut response = client.get(&url)
+        .send()
+        .context("Failed to get a response from celestrak (it may have timed out)")?;
 
     let mut body = String::new();
 
