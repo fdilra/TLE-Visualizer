@@ -23,12 +23,22 @@ A Rust CLI tool for fetching, propagating, and visualizing satellite orbital dat
 tle-plot plot CATNR 25544
 
 ```
-
 This queries CelesTrak for the ISS (NORAD ID `25544`) and returns its latest TLE set.
+
+### Example: Query the Galileo satellite group with a custom propagation time
+
+```bash
+
+tle-plot plot GROUP galileo -t 12
+
+```
+This queries CelesTrak for the Galileo satellite group TLE set and propagates it with a custom time of 12 hours (default is 4).
+
 
 ### Options
 
 -  `-h, --help`: Print help
+-  `-t <HOURS>`: Specify custom propagation time in hours
 
 ### Commands:
   
@@ -38,7 +48,6 @@ This queries CelesTrak for the ISS (NORAD ID `25544`) and returns its latest TLE
 ## Development Status
 
 At present, the application can:
-
 * Parse CLI arguments
 * Fetch TLE data from CelesTrak
 * Validate queries
@@ -46,7 +55,6 @@ At present, the application can:
 
 Next steps:
 * Improve Earth model alignment with axes
-* Add option for custom propagation time
 * Add a command for 2D ground track visualization 
 * Improve testing
 * Improve presentation (background stars, atmosphere, illumination)
@@ -58,7 +66,7 @@ Run tests with:
 
 ```bash
 
-cargo  test
+cargo test
 
 ```
 
