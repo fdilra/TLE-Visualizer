@@ -55,6 +55,7 @@ At present, the application can:
 
 Next steps:
 * Improve Earth model alignment with axes
+* Add option to provide TLE string instead of querying Celestrak
 * Add a command for 2D ground track visualization 
 * Improve testing
 * Improve presentation (background stars, atmosphere, illumination)
