@@ -5,7 +5,7 @@ use clap::{Args, Parser, Subcommand};
 pub struct CLI {
 
     /// Option to set a custom propagation time. Default is 4 hours.
-    #[arg(short, value_name = "PROPAGATION_TIME_IN_HOURS")]
+    #[arg(short, value_name = "PROPAGATION_TIME_IN_HOURS", global = true)]
     pub time: Option<i32>, 
 
     /// CLI commands

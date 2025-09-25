@@ -29,7 +29,7 @@ This queries CelesTrak for the ISS (NORAD ID `25544`) and returns its latest TLE
 
 ```bash
 
-tle-plot plot GROUP galileo -t 12
+tle-plot plot -t 12 GROUP galileo
 
 ```
 This queries CelesTrak for the Galileo satellite group TLE set and propagates it with a custom time of 12 hours (default is 4).
