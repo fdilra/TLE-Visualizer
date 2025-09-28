@@ -15,8 +15,10 @@ pub struct CLI {
 
 #[derive(Subcommand, Debug)]
 pub enum Commands {
-    /// Main command, query celestrak for TLEs, propagate the response, and plot it
-    Plot(QueryArgs),
+    /// 3D plotting command
+    Plot3d(QueryArgs),
+    /// Ground track plotting command
+    Plot2d(QueryArgs),
 }
 
 #[derive(Args, Debug)]

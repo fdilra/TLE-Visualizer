@@ -15,7 +15,7 @@ use crate::propagator::PropagationResult;
 const KM_TO_UNIT_SCALE: f64 = 6371.137 / 5.0;
 
 /// Render the Earth-centered trajectories as line segments around a 3D model of the Earth
-pub fn plot_tles_3d(results: &Vec<PropagationResult>) -> Result<()> {
+pub fn plot_3d(results: &Vec<PropagationResult>) -> Result<()> {
     let mut window = Window::new("TLE Visualizer");
     window.set_light(Light::StickToCamera);
 
