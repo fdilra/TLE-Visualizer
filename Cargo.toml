@@ -11,4 +11,7 @@ sgp4 = "2.3.0"
 clap = { version = "4.5.47", features = ["derive"] }
 kiss3d = "0.36.0"
 nalgebra   = { version = "0.30", features = ["rand"] }
-
+eframe = "0.27"
+egui = "0.27"
+egui_plot = "0.27"
+image = "0.25.8"

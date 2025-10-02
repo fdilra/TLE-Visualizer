@@ -3,14 +3,13 @@ use sgp4::{Prediction};
 
 use crate::tle::TLE;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct PropagationResult {
     pub object_name: String,
     pub positions: Vec<[f64; 3]>
 }
 
-// Propagate each fetched TLE and return a vector of results.
-// Propagation currently fixed at 1 min intervals for 4 hrs
+// Propagate each fetched TLE at 1 min intervals and return a vector of results
 pub fn propagate_tles(tle_list: Vec<TLE>, optional_time: Option<i32>) -> Result<Vec<PropagationResult>> {
     let mut results: Vec<PropagationResult> = Vec::new();
 
@@ -35,8 +34,11 @@ pub fn propagate_tles(tle_list: Vec<TLE>, optional_time: Option<i32>) -> Result<
             predictions.push(constants.propagate(sgp4::MinutesSinceEpoch(t))?);
         }
 
-        for prediction in predictions {
+        for mut prediction in predictions {
             // Convert from km to Earth radii
+            prediction.position[0] *= -1.0;
+            // prediction.position[1] *= -1.0;
+            prediction.position[2] *= -1.0;
             positions.push(prediction.position);
         }
 

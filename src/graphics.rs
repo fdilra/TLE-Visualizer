@@ -72,7 +72,7 @@ fn setup_earth(window: &mut Window) -> SceneNode {
     let rotation = UnitQuaternion::from_axis_angle(&Vector3::x_axis(), consts::PI);
     earth.append_rotation_wrt_center(&rotation);
     let rotation = UnitQuaternion::from_axis_angle(&Vector3::y_axis(), consts::FRAC_PI_2);
-    earth.append_rotation_wrt_center(&rotation);
+    // earth.append_rotation_wrt_center(&rotation);
 
     return earth;
 }
@@ -94,9 +94,9 @@ fn define_colors() -> [OPoint<f32, Const<3>>; 7] {
 
 fn draw_axes(window: &mut Window, colors: &[OPoint<f32, Const<3>>; 7]) {
     // Define axes points
-    let x_axis_pt = Point3::new(10.0, 0.0, 0.0);
+    let x_axis_pt = Point3::new(-10.0, 0.0, 0.0);
     let y_axis_pt = Point3::new(0.0, 10.0, 0.0);
-    let z_axis_pt = Point3::new(0.0, 0.0, 10.0); 
+    let z_axis_pt = Point3::new(0.0, 0.0, -10.0); 
 
     // Draw axes
     window.draw_line(&Point3::origin(), &x_axis_pt, &colors[0]);
