@@ -3,8 +3,8 @@ use eframe::egui;
 use egui_plot::{Line, Plot, PlotImage, PlotPoint, PlotPoints, Points}; // <-- Added Points here
 use crate::propagator::PropagationResult;
 
-/// Convert Earth-centered inertial (x,y,z) km position into (lat, lon) degrees
-fn eci_to_latlon(pos: &[f64; 3]) -> (f64, f64) {
+/// Convert (x,y,z) km position into (lat, lon) degrees
+fn ecef_to_latlon(pos: &[f64; 3]) -> (f64, f64) {
     let r = (pos[0].powi(2) + pos[1].powi(2) + pos[2].powi(2)).sqrt();
     let lat = (pos[2] / r).asin().to_degrees();
     let lon = pos[1].atan2(pos[0]).to_degrees();
@@ -84,7 +84,7 @@ impl eframe::App for GroundTrackApp {
                             .positions
                             .iter()
                             .map(|p| {
-                                let (lat, lon) = eci_to_latlon(p);
+                                let (lat, lon) = ecef_to_latlon(p);
                                 [lon, lat] // x = longitude, y = latitude
                             })
                             .collect();
@@ -95,7 +95,7 @@ impl eframe::App for GroundTrackApp {
                         // Highlight first point of the trajectory
                         // Check if there are any positions to avoid a panic
                         if let Some(first_pos) = result.positions.first() {
-                            let (lat, lon) = eci_to_latlon(first_pos);
+                            let (lat, lon) = ecef_to_latlon(first_pos);
                             
                             // Create a 'Points' item with a single point
                             let start_point = Points::new([lon, lat])
