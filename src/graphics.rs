@@ -118,9 +118,9 @@ fn draw_trajectories(
             .iter()
             .map(|p| {
                 Point3::new(
-                    (p[0] / KM_TO_UNIT_SCALE) as f32,
-                    (p[1] / KM_TO_UNIT_SCALE) as f32,
+                    (-p[0] / KM_TO_UNIT_SCALE) as f32,
                     (p[2] / KM_TO_UNIT_SCALE) as f32,
+                    (p[1] / KM_TO_UNIT_SCALE) as f32,
                 )
             })
             .collect();
