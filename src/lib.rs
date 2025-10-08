@@ -32,7 +32,7 @@ fn execute_plot3d(args: &QueryArgs, time: Option<u32>) -> Result<()> {
     // Hardcoded string for testing (to avoid getting ip banned from Celestrak for too many requests)
     let tle_string = "ISS (ZARYA)\n1 25544U 98067A   25260.12361477  .00008550  00000-0  15572-3 0  9997\n2 25544  51.6329 211.3907 0004353 348.5756  11.5133 15.50345634529426".to_owned();
     let tle_string = fetcher::query_celestrak(&args.query, &args.value)?;
-    // println!("\nFetched TLE string:\n {:?}", &tle_string);
+    println!("\nFetched TLE string:\n {:?}", &tle_string);
 
     let tle_list: Vec<TLE> = parse_tles(&tle_string)?;
     // println!("\n{:?}", tle_list);
@@ -49,7 +49,7 @@ fn execute_plot2d(args: &QueryArgs, time: Option<u32>) -> Result<()> {
     // Hardcoded string for testing (to avoid getting ip banned from Celestrak for too many requests)
     let tle_string = "ISS (ZARYA)\n1 25544U 98067A   25274.82220398  .00016258  00000-0  29639-3 0  9998\n2 25544  51.6327 138.5459 0001045 186.4676 173.6300 15.49599116531705".to_owned();
     let tle_string = fetcher::query_celestrak(&args.query, &args.value)?;
-    // println!("\nFetched TLE string:\n {:?}", &tle_string);
+    println!("\nFetched TLE string:\n {:?}", &tle_string);
 
     let tle_list: Vec<TLE> = parse_tles(&tle_string)?;
     // println!("\n{:?}", tle_list);

@@ -44,12 +44,14 @@ pub fn propagate_tles(tle_list: Vec<TLE>, optional_time: Option<u32>) -> Result<
             let z_teme = prediction.position[2];
 
             // Rotation around z axis
-            let x_ecef =  x_teme * era.cos() + y_teme * era.sin();
-            let y_ecef = -x_teme * era.sin() + y_teme * era.cos();
+            let x_ecef =  x_teme * era.cos() - y_teme * era.sin();
+            let y_ecef =  x_teme * era.sin() + y_teme * era.cos();
             let z_ecef =  z_teme;
 
             positions.push([x_ecef, y_ecef, z_ecef]);
         }
+
+        // println!("{:?}", positions);
 
         results.push(PropagationResult {
             object_name: tle.name.unwrap_or_else(|| "Unnamed object".to_owned()),

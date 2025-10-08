@@ -1,6 +1,6 @@
 use anyhow::{Context, Result};
 use eframe::egui;
-use egui_plot::{Line, Plot, PlotImage, PlotPoint, PlotPoints};
+use egui_plot::{Line, Plot, PlotImage, PlotPoint, PlotPoints, Points}; // <-- Added Points here
 use crate::propagator::PropagationResult;
 
 /// Convert Earth-centered inertial (x,y,z) km position into (lat, lon) degrees
@@ -91,6 +91,19 @@ impl eframe::App for GroundTrackApp {
 
                         let line = Line::new(points).color(color).width(2.0);
                         plot_ui.line(line);
+
+                        // Highlight first point of the trajectory
+                        // Check if there are any positions to avoid a panic
+                        if let Some(first_pos) = result.positions.first() {
+                            let (lat, lon) = eci_to_latlon(first_pos);
+                            
+                            // Create a 'Points' item with a single point
+                            let start_point = Points::new([lon, lat])
+                                .radius(5.0)   
+                                .color(color); 
+
+                            plot_ui.points(start_point);
+                        }
                     }
                 });
         });
